@@ -5,7 +5,7 @@
 #include <fstream>
 typedef int ItemType;
 struct TreeNode;
-#include "QueType.cpp"
+
 class TreeType
 {
 public:
