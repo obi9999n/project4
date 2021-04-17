@@ -1,5 +1,6 @@
 // Header file for Queue ADT.
-
+#ifndef QUETYPE_H
+#define QUETYPE_H
 #include <new>
 #include <cstddef>
 class FullQueue
@@ -48,3 +49,4 @@ private:
   NodeType<ItemType> *front;
   NodeType<ItemType> *rear;
 };
+#endif

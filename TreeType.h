@@ -1,3 +1,6 @@
+#ifndef TREETYPE_H
+#define TREETYPE_H
+
 #include <string>
 #include <fstream>
 typedef int ItemType;
@@ -28,3 +31,4 @@ public:
 private:
   TreeNode *root;
 };
+#endif
