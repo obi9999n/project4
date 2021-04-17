@@ -7,24 +7,24 @@ struct TreeNode
   TreeNode *left;
   TreeNode *right;
 };
-TreeType::TreeType()
+inline TreeType::TreeType()
 {
   root = NULL;
 }
 
-TreeType::TreeType(const TreeType &originalTree)
+inline TreeType::TreeType(const TreeType &originalTree)
 {
 }
 
-void Destroy(TreeNode *&tree);
+inline void Destroy(TreeNode *&tree);
 
-TreeType::~TreeType()
+inline TreeType::~TreeType()
 // Calls recursive function Destroy to destroy the tree.
 {
   Destroy(root);
 }
 
-bool TreeType::IsFull() const
+inline bool TreeType::IsFull() const
 // Returns true if there is no room for another item
 //  on the free store; false otherwise.
 {
@@ -41,22 +41,22 @@ bool TreeType::IsFull() const
   }
 }
 
-bool TreeType::IsEmpty() const
+inline bool TreeType::IsEmpty() const
 // Returns true if the tree is empty; false otherwise.
 {
   return root == NULL;
 }
 
-int CountNodes(TreeNode *tree);
+inline int CountNodes(TreeNode *tree);
 
-int TreeType::GetLength() const
+inline int TreeType::GetLength() const
 // Calls recursive function CountNodes to count the
 // nodes in the tree.
 {
   return CountNodes(root);
 }
 
-int CountNodes(TreeNode *tree)
+inline int CountNodes(TreeNode *tree)
 // Post: returns the number of nodes in the tree.
 {
   if (tree == NULL)
@@ -65,10 +65,10 @@ int CountNodes(TreeNode *tree)
     return CountNodes(tree->left) + CountNodes(tree->right) + 1;
 }
 
-void Retrieve(TreeNode *tree,
-              ItemType &item, bool &found);
+inline void Retrieve(TreeNode *tree,
+                     ItemType &item, bool &found);
 
-ItemType TreeType::GetItem(ItemType item, bool &found)
+inline ItemType TreeType::GetItem(ItemType item, bool &found)
 // Calls recursive function Retrieve to search the tree for item.
 {
   Retrieve(root, item, found);
@@ -76,8 +76,8 @@ ItemType TreeType::GetItem(ItemType item, bool &found)
 }
 
 // helper function for GetItem
-void Retrieve(TreeNode *tree,
-              ItemType &item, bool &found)
+inline void Retrieve(TreeNode *tree,
+                     ItemType &item, bool &found)
 // Recursively searches tree for item.
 // Post: If there is an element someItem whose key matches item's,
 //       found is true and item is set to a copy of someItem;
@@ -96,16 +96,16 @@ void Retrieve(TreeNode *tree,
   }
 }
 
-void Insert(TreeNode *&tree, ItemType item);
+inline void Insert(TreeNode *&tree, ItemType item);
 
-void TreeType::PutItem(ItemType item)
+inline void TreeType::PutItem(ItemType item)
 // Calls recursive function Insert to insert item into tree.
 {
   Insert(root, item);
 }
 
 // helper Function for PutItem
-void Insert(TreeNode *&tree, ItemType item)
+inline void Insert(TreeNode *&tree, ItemType item)
 // Inserts item into tree.
 // Post:  item is in tree; search property is maintained.
 {
@@ -121,11 +121,11 @@ void Insert(TreeNode *&tree, ItemType item)
   else
     Insert(tree->right, item); // Insert in right subtree.
 }
-void DeleteNode(TreeNode *&tree);
+inline void DeleteNode(TreeNode *&tree);
 
-void Delete(TreeNode *&tree, ItemType item);
+inline void Delete(TreeNode *&tree, ItemType item);
 
-void TreeType::DeleteItem(ItemType item)
+inline void TreeType::DeleteItem(ItemType item)
 // Calls recursive function Delete to delete item from tree.
 {
   bool found = false;
@@ -136,7 +136,7 @@ void TreeType::DeleteItem(ItemType item)
     cout << item << "is not in tree\n";
 }
 
-void Delete(TreeNode *&tree, ItemType item)
+inline void Delete(TreeNode *&tree, ItemType item)
 // Deletes item from tree.
 // Post:  item is not in tree.
 {
@@ -148,9 +148,9 @@ void Delete(TreeNode *&tree, ItemType item)
     DeleteNode(tree); // Node found; call DeleteNode.
 }
 
-void GetPredecessor(TreeNode *tree, ItemType &data);
+inline void GetPredecessor(TreeNode *tree, ItemType &data);
 
-void DeleteNode(TreeNode *&tree)
+inline void DeleteNode(TreeNode *&tree)
 // Deletes the node pointed to by tree.
 // Post: The user's data in the node pointed to by tree is no
 //       longer in the tree.  If tree is a leaf node or has only
@@ -180,7 +180,7 @@ void DeleteNode(TreeNode *&tree)
   }
 }
 //Helper function for DeleteNode
-void GetPredecessor(TreeNode *tree, ItemType &data)
+inline void GetPredecessor(TreeNode *tree, ItemType &data)
 // Sets data to the info member of the right-most node in tree.
 {
   while (tree->right != NULL)
@@ -188,7 +188,7 @@ void GetPredecessor(TreeNode *tree, ItemType &data)
   data = tree->info;
 }
 // Helper function for Print
-void inOrderTraverse(TreeNode *tree)
+inline void inOrderTraverse(TreeNode *tree)
 // Prints info member of items in tree in sorted order on screen.
 {
   if (tree != NULL)
@@ -199,29 +199,29 @@ void inOrderTraverse(TreeNode *tree)
   }
 }
 
-void TreeType::Print() const
+inline void TreeType::Print() const
 // Calls recursive function inOrderTraverse to print items in the tree.
 {
   inOrderTraverse(root);
 }
-void TreeType::PreOrderPrint() const
+inline void TreeType::PreOrderPrint() const
 { // Implement this function, You may call a helper function
   // Then Remove the following stub statement
   cout << "PreOrderPrint stub has been called\n";
 }
-void TreeType::PostOrderPrint() const
+inline void TreeType::PostOrderPrint() const
 {
   // Implement this function, You may call a helper function
   // Then Remove the following stub statement
   cout << "Post OrderPrint stub has been called\n";
 }
-void TreeType::PrintAncestors(int value)
+inline void TreeType::PrintAncestors(int value)
 {
   // Implement this function, You may call a helper function
   // Then Remove the following stub statement
   cout << "PrintAncestors() has been called\n";
 }
-int TreeType::GetSuccessor(int value)
+inline int TreeType::GetSuccessor(int value)
 {
   // Implement this function, You may call a helper function
   // Then Remove the following stub statement
@@ -229,17 +229,17 @@ int TreeType::GetSuccessor(int value)
   return 0; //you should change this return statement
 }
 // helper function for Mirror Image
-void mirror(TreeNode *&copy, const TreeNode *originalTree)
+inline void mirror(TreeNode *&copy, const TreeNode *originalTree)
 // Post: copy is the root of a tree that is a mirror Image of originalTree.
 { // implement this function
 }
 
-void TreeType::mirrorImage(TreeType &t)
+inline void TreeType::mirrorImage(TreeType &t)
 {
   // calls the helper function mirror
 }
 
-void Destroy(TreeNode *&tree)
+inline void Destroy(TreeNode *&tree)
 // Post: tree is empty; nodes have been deallocated.
 {
   if (tree != NULL)
@@ -250,13 +250,13 @@ void Destroy(TreeNode *&tree)
   }
 }
 
-void TreeType::MakeEmpty()
+inline void TreeType::MakeEmpty()
 {
   Destroy(root);
   root = NULL;
 }
-void CopyTree(TreeNode *&copy,
-              const TreeNode *originalTree)
+inline void CopyTree(TreeNode *&copy,
+                     const TreeNode *originalTree)
 // Post: copy is the root of a tree that is a duplicate
 // of originalTree.
 {
@@ -271,7 +271,7 @@ void CopyTree(TreeNode *&copy,
   }
 }
 
-void TreeType::operator=(const TreeType &originalTree)
+inline void TreeType::operator=(const TreeType &originalTree)
 // Calls recursive function CopyTree to copy originalTree
 // into root.
 {
@@ -283,6 +283,6 @@ void TreeType::operator=(const TreeType &originalTree)
   }
 }
 
-void TreeType::LevelOrderPrint() const
+inline void TreeType::LevelOrderPrint() const
 { //Implement this function, you May use a data structure
 }
