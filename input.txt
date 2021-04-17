@@ -1,0 +1,12 @@
+IsEmpty
+PutItem 50
+PutItem 40
+PutItem 5
+PutItem 60
+PutItem 45
+PutItem 80
+PutItem 55
+PutItem 3
+PutItem 100
+Error
+Quit
