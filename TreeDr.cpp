@@ -5,7 +5,7 @@
 #include <cstring>
 
 #include "TreeType.cpp"
-
+#include "QueType.cpp"
 #include <iostream>
 using namespace std;
 TreeType &makeTree(int arr[], int size);
