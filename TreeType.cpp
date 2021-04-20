@@ -283,6 +283,6 @@ inline void TreeType::operator=(const TreeType &originalTree)
   }
 }
 
-inline void TreeType::LevelOrderPrint() const
+inline void TreeType::LevelOrderPrint(TreeType *tree) const
 { //Implement this function, you May use a data structure
 }

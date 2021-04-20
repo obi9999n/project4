@@ -39,6 +39,9 @@ public:
   // Function: Adds newItem to the rear of the queue.
   // Post: If (queue is full) FullQueue exception is thrown
   //       else newItem is at rear of queue.
+
+  int getLength() const;
+
   void Dequeue(ItemType &item);
   // Function: Removes front item from the queue and returns it in item.
   // Post: If (queue is empty) EmptyQueue exception is thrown
@@ -48,5 +51,6 @@ public:
 private:
   NodeType<ItemType> *front;
   NodeType<ItemType> *rear;
+  int length;
 };
 #endif

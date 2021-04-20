@@ -20,6 +20,7 @@ QueType<ItemType>::QueType() // Class constructor.
 {
   front = NULL;
   rear = NULL;
+  length = 0;
 }
 
 template <class ItemType>
@@ -35,6 +36,7 @@ void QueType<ItemType>::MakeEmpty()
     delete tempPtr;
   }
   rear = NULL;
+  length = 0;
 }
 
 // Class destructor.
@@ -70,6 +72,12 @@ bool QueType<ItemType>::IsEmpty() const
 }
 
 template <class ItemType>
+int QueType<ItemType>::getLength() const
+{
+  return length;
+}
+
+template <class ItemType>
 void QueType<ItemType>::Enqueue(ItemType newItem)
 // Adds newItem to the rear of the queue.
 // Pre:  Queue has been initialized.
@@ -92,6 +100,7 @@ void QueType<ItemType>::Enqueue(ItemType newItem)
       rear->next = newNode;
     rear = newNode;
   }
+  length++;
 }
 
 template <class ItemType>
