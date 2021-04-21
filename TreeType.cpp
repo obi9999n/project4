@@ -268,7 +268,6 @@ inline void mirror(TreeNode *&copy, const TreeNode *originalTree) {
 inline void TreeType::mirrorImage(TreeType &t)
 {
   mirror(t.root, root);
-  return t;
 }
 
 inline void Destroy(TreeNode *&tree)
