@@ -27,10 +27,11 @@ public:
   void PostOrderPrint(TreeNode *node) const;
   int GetSuccessor(int value);
   void mirrorImage(TreeType &t);
+  void DeleteNode(TreeNode *&tree);
+  void Delete(TreeNode *&tree, ItemType item);
 
 private:
   TreeNode *root;
   TreeType *ptrToSuccessor(TreeNode *&tree);
-  void DeleteNode(TreeNode *&tree);
 };
 #endif
