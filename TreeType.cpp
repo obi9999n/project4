@@ -185,16 +185,6 @@ inline void DeleteNode(TreeNode *&tree)
   }
 }
 
-//Helper function for DeleteNode
-inline void GetPredecessor(TreeNode *tree, ItemType &data)
-// Sets data to the info member of the right-most node in tree.
-{
-  while (tree->right != NULL)
-  {
-    tree = tree->right;
-    data = tree->info;
-  }
-}
 // Helper function for Print
 inline void inOrderTraverse(TreeNode *tree)
 // Prints info member of items in tree in sorted order on screen.
