@@ -289,12 +289,10 @@ inline void TreeType::LevelOrderPrint(TreeNode *tree) const
 
 inline TreeNode *TreeType::ptrToSuccessor(TreeNode *&tree)
 {
-  if (tree->left == NULL)
-  {
-    return tree;
-  }
-  else
+  while (tree->left != NULL)
   {
     tree = tree->left;
   }
+
+  return tree;
 }
