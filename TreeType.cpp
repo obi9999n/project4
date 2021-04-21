@@ -149,6 +149,15 @@ inline void GetPredecessor(TreeNode *tree, ItemType &data)
     data = tree->info;
   } // while
 }
+TreeNode *ptrToSuccessor(TreeNode *&tree)
+{
+  TreeNode *ptr = tree->left;
+  while (ptr->left != NULL)
+  {
+    ptr = tree->left;
+  }
+  return ptr;
+}
 
 inline void DeleteNode(TreeNode *&tree)
 // Deletes the node pointed to by tree.
@@ -261,16 +270,6 @@ inline void TreeType::PrintAncestors(int value)
   // Then Remove the following stub statement
   cout << "PrintAncestors() has been called\n";
 } // print ancestors
-
-TreeNode *ptrToSuccessor(TreeNode *&tree)
-{
-  TreeNode *ptr = tree->left;
-  while (ptr->left != NULL)
-  {
-    ptr = tree->left;
-  }
-  return ptr;
-}
 
 inline int TreeType::GetSuccessor(int value)
 {
