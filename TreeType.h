@@ -27,6 +27,7 @@ public:
   void PostOrderPrint(TreeNode *node) const;
   int GetSuccessor(int value);
   void mirrorImage(TreeType &t);
+  void DeleteNode(TreeNode *&tree);
 
 private:
   TreeNode *root;
