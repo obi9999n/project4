@@ -1,13 +1,15 @@
 #include <iostream>
-using namespace std;
+#include <QueType.cpp>
 #include "TreeType.h"
+
+using namespace std;
+
 struct TreeNode {
   ItemType info;
   TreeNode *left;
   TreeNode *right;
 };
-inline TreeType::TreeType()
-{
+inline TreeType::TreeType() {
   root = NULL;
 }
 
