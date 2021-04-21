@@ -214,7 +214,11 @@ inline void TreeType::Print() const
 {
   inOrderTraverse(root);
 }
-inline void TreeType::PreOrderPrint(TreeNode *node) const
+inline void TreeType::PreOrderPrint() const
+{
+  PreOrderTransversal(root);
+}
+inline void PreOrderTransversal(TreeNode *node)
 {
   TreeNode *temp = node;
   if (temp == NULL)
@@ -222,22 +226,54 @@ inline void TreeType::PreOrderPrint(TreeNode *node) const
     return;
   }
   cout << temp->info << " ";
-  PreOrderPrint(temp->left);
-  PreOrderPrint(temp->right);
+  PreOrderTransversal(temp->left);
+  PreOrderTransversal(temp->right);
 }
-inline void TreeType::PostOrderPrint(TreeNode *node) const
+inline void TreeType::PostOrderPrint() const
+{
+  PostOrderTransversal(root);
+}
+inline void PostOrderTransversal(TreeNode *node)
 {
   TreeNode *temp = node;
   if (temp == NULL)
   {
     return;
   }
-  PostOrderPrint(temp->left);
-  PostOrderPrint(temp->right);
+  PostOrderTransversal(temp->left);
+  PostOrderTransversal(temp->right);
   cout << temp->info << " ";
 }
 inline void TreeType::PrintAncestors(int value)
 {
+  int newVal = value;
+  if (value == root->info)
+  {
+    cout << value << " has no ancestors\n";
+    return;
+  }
+  while (newVal != root->info)
+  {
+    TreeNode *temp = root;
+    while (temp->right->info != newVal && temp->left->info != newVal)
+    {
+      if (temp->info < newVal)
+      {
+        temp = temp->right;
+      }
+      else if (temp->info > newVal)
+      {
+        temp = temp->left;
+      }
+      if (temp->right == NULL && temp->left == NULL)
+      {
+        cout << "Item is not in the tree";
+        return;
+      }
+    }
+    cout << temp->info << " ";
+    newVal = temp->info;
+  }
   // Implement this function, You may call a helper function
   // Then Remove the following stub statement
   cout << "PrintAncestors() has been called\n";

@@ -23,8 +23,8 @@ public:
   void Print() const;
   void LevelOrderPrint() const;
   void PrintAncestors(int value);
-  void PreOrderPrint(TreeNode *node) const;
-  void PostOrderPrint(TreeNode *node) const;
+  void PreOrderPrint() const;
+  void PostOrderPrint() const;
   int GetSuccessor(int value);
   void mirrorImage(TreeType &t);
 
