@@ -214,7 +214,11 @@ inline void TreeType::Print() const
 {
   inOrderTraverse(root);
 }
-inline void TreeType::PreOrderPrint(TreeNode *node) const
+inline void TreeType::PreOrderPrint() const
+{
+  PreOrderTransversal(root);
+}
+inline void PreOrderTransversal(TreeNode *node)
 {
   TreeNode *temp = node;
   if (temp == NULL)
@@ -222,18 +226,22 @@ inline void TreeType::PreOrderPrint(TreeNode *node) const
     return;
   }
   cout << temp->info << " ";
-  PreOrderPrint(temp->left);
-  PreOrderPrint(temp->right);
+  PreOrderTransversal(temp->left);
+  PreOrderTransversal(temp->right);
 }
-inline void TreeType::PostOrderPrint(TreeNode *node) const
+inline void TreeType::PostOrderPrint() const
+{
+  PostOrderTransversal(root);
+}
+inline void PostOrderTransversal(TreeNode *node)
 {
   TreeNode *temp = node;
   if (temp == NULL)
   {
     return;
   }
-  PostOrderPrint(temp->left);
-  PostOrderPrint(temp->right);
+  PostOrderTransversal(temp->left);
+  PostOrderTransversal(temp->right);
   cout << temp->info << " ";
 }
 inline void TreeType::PrintAncestors(int value)
