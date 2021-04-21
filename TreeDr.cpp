@@ -8,7 +8,7 @@
 #include <iostream>
 using namespace std;
 
-TreeType &makeTree(int arr[], int size);
+TreeType *makeTree(int arr[], int size);
 int main()
 {
 	string command; // operation to be executed
@@ -141,7 +141,16 @@ int main()
 			int array[100], length;
 			inFile >> length;
 			for (int i = 0; i < length; i++)
+			{
 				inFile >> array[i];
+			}
+			TreeType *balancedTree = makeTree(array, length);
+			cout << "balancedTree.LevelOrderPrint()\n";
+			balancedTree->levelOrderPrint();
+			cout << "balancedTree.InOrderPrint()\n";
+			balancedTree->Print();
+			delete balancedTree;
+
 			// After implementing makeTree
 			// Remove the follwoing comment to call the function
 			//	  TreeType balancedTree=makeTree(array, length);
@@ -157,12 +166,31 @@ int main()
 // implement this function
 // you may define and call helper functions.
 // The helper function could be an iterative or a recursive function.
-TreeType &makeTree(int arr[], int size)
+void makeTreeHelper(int startSize, int endSize, TreeType *tree, int arr[])
 {
-	TreeType balancedTree;
-	// Code to add array items in balancedTree
-	//Write your code
-	cout << "MakeTree has been called";
-	//remove this statement from implementation
+
+	if (!((endSize - startSize) < 0))
+	{
+
+		int node = (startSize + endSize) / 2;
+
+		tree->PutItem(arr[node]);
+		// cout << " " << arr[node] << " ";
+
+		makeTreeHelper(startSize, node - 1, tree, arr);
+		makeTreeHelper(node + 1, endSize, tree, arr);
+	}
+}
+
+TreeType *makeTree(int arr[], int size)
+// implement this function
+// you may define and call helper functions.
+{
+
+	TreeType *balancedTree = new TreeType;
+
+	makeTreeHelper(0, size - 1, balancedTree, arr);
+	cout << endl;
+
 	return balancedTree;
 }
