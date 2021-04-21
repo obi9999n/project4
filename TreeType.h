@@ -29,6 +29,8 @@ public:
   void mirrorImage(TreeType &t);
   void DeleteNode(TreeNode *&tree);
   void Delete(TreeNode *&tree, ItemType item);
+  int CountNodes(TreeNode *tree);
+  void CopyTree(TreeNode *&copy, const TreeNode *originalTree);
 
 private:
   TreeNode *root;
