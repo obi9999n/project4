@@ -260,15 +260,15 @@ inline int TreeType::GetSuccessor(int value)
 inline void mirror(TreeNode *&copy, const TreeNode *originalTree) {
   copy = new TreeNode;
   if (originalTree != NULL) {
-    Mirror(copy->left, originalTree->right);
-    Mirror(copy->right, originalTree->left);
+    mirror(copy->left, originalTree->right);
+    mirror(copy->right, originalTree->left);
   } // if                                                                                                                                           
  } // copy is the root of a tree that is a mirror Image of                                                                                          
 
 inline void TreeType::mirrorImage(TreeType &t)
 {
-  Mirror(t.root, root);
-  return tree;
+  mirror(t.root, root);
+  return t;
 }
 
 inline void Destroy(TreeNode *&tree)
