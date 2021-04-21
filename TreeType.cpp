@@ -244,19 +244,26 @@ inline void PostOrderTransversal(TreeNode *node)
   PostOrderTransversal(temp->right);
   cout << temp->info << " ";
 }
+//prints all ancestors of a value
 inline void TreeType::PrintAncestors(int value)
 {
+  //Creates a moveable variable
   int newVal = value;
+  //Ends if he value is in the root node
   if (value == root->info)
   {
     cout << value << " has no ancestors\n";
     return;
   }
+  //Goes until all ancestors have been printed
   while (newVal != root->info)
   {
+    //temporary node for transversal
     TreeNode *temp = root;
+    //Goes until it finds the ancestor of newVal
     while (temp->right->info != newVal && temp->left->info != newVal)
     {
+      //Goes right or left depending on if newVal is more or less than the node
       if (temp->info < newVal)
       {
         temp = temp->right;
@@ -265,41 +272,44 @@ inline void TreeType::PrintAncestors(int value)
       {
         temp = temp->left;
       }
+      //If the value is not in the tree
       if (temp->right == NULL && temp->left == NULL)
       {
         cout << "Item is not in the tree";
         return;
       }
     }
+    //Prints ancestor
     cout << temp->info << " ";
+    //Makes ancestor the new value to find (ex: printancestors(10) newval = 10 then 6 then 15)
     newVal = temp->info;
   }
-  // Implement this function, You may call a helper function
-  // Then Remove the following stub statement
-  cout << "PrintAncestors() has been called\n";
 }
 
-TreeType *ptrToSuccessor(TreeNode *&tree)
+TreeNode *ptrToSuccessor(TreeNode *&tree)
 {
   TreeNode *ptr = tree->left;
   while (ptr->left != NULL)
   {
     ptr = tree->left;
   }
+
   return ptr;
 }
 
 inline int TreeType::GetSuccessor(int value)
 {
 }
-// helper function for Mirror Image                                                                                                                 
-inline void mirror(TreeNode *&copy, const TreeNode *originalTree) {
+// helper function for Mirror Image
+inline void mirror(TreeNode *&copy, const TreeNode *originalTree)
+{
   copy = new TreeNode;
-  if (originalTree != NULL) {
+  if (originalTree != NULL)
+  {
     mirror(copy->left, originalTree->right);
     mirror(copy->right, originalTree->left);
-  } // if                                                                                                                                           
- } // copy is the root of a tree that is a mirror Image of                                                                                          
+  } // if
+} // copy is the root of a tree that is a mirror Image of
 
 inline void TreeType::mirrorImage(TreeType &t)
 {
