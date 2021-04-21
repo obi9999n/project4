@@ -245,7 +245,7 @@ inline void TreeType::PrintAncestors(int value)
 
 TreeType *ptrToSuccessor(TreeNode *&tree)
 {
-  TreeType *ptr = tree->left;
+  TreeNode *ptr = tree->left;
   while (ptr->left != NULL)
   {
     ptr = tree->left;
