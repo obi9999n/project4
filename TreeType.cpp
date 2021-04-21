@@ -1,5 +1,4 @@
 #include <iostream>
-#include <QueType.cpp>
 #include "TreeType.h"
 
 using namespace std;
@@ -279,7 +278,7 @@ inline void TreeType::PrintAncestors(int value)
   cout << "PrintAncestors() has been called\n";
 }
 
-TreeType *ptrToSuccessor(TreeNode *&tree)
+TreeNode* ptrToSuccessor(TreeNode *&tree)
 {
   TreeNode *ptr = tree->left;
   while (ptr->left != NULL)
