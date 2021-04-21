@@ -246,6 +246,34 @@ inline void PostOrderTransversal(TreeNode *node)
 }
 inline void TreeType::PrintAncestors(int value)
 {
+  int newVal = value;
+  if (value == root->info)
+  {
+    cout << value << " has no ancestors\n";
+    return;
+  }
+  while (newVal != root->info)
+  {
+    TreeNode *temp = root;
+    while (temp->right->info != newVal && temp->left->info != newVal)
+    {
+      if (temp->info < newVal)
+      {
+        temp = temp->right;
+      }
+      else if (temp->info > newVal)
+      {
+        temp = temp->left;
+      }
+      if (temp->right == NULL && temp->left == NULL)
+      {
+        cout << "Item is not in the tree";
+        return;
+      }
+    }
+    cout << temp->info << " ";
+    newVal = temp->info;
+  }
   // Implement this function, You may call a helper function
   // Then Remove the following stub statement
   cout << "PrintAncestors() has been called\n";
