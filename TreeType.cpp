@@ -167,7 +167,7 @@ inline void DeleteNode(TreeNode *&tree)
 //       deleted; otherwise, the user's data is replaced by its
 //       logical predecessor and the predecessor's node is deleted.
 {
-  ItemType data;
+
   TreeNode *tempPtr;
 
   tempPtr = tree;
