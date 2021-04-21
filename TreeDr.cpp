@@ -145,8 +145,6 @@ int main()
 				inFile >> array[i];
 			}
 			TreeType *balancedTree = makeTree(array, length);
-			cout << "balancedTree.LevelOrderPrint()\n";
-			balancedTree->levelOrderPrint();
 			cout << "balancedTree.InOrderPrint()\n";
 			balancedTree->Print();
 			delete balancedTree;
