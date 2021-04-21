@@ -103,13 +103,7 @@ inline void TreeType::PutItem(ItemType item) {
   Insert(root, item);
 }
 
-inline void DeleteNode(TreeNode *&tree);
-
-inline void Delete(TreeNode *&tree, ItemType item);
-
-inline void TreeType::DeleteItem(ItemType item)
-// Calls recursive function Delete to delete item from tree.
-{
+inline void TreeType::DeleteItem(ItemType item) {
   bool found = false;
   GetItem(item, found);
   if (found)
@@ -118,33 +112,26 @@ inline void TreeType::DeleteItem(ItemType item)
     cout << item << "is not in tree\n";
 }
 
-inline void Delete(TreeNode *&tree, ItemType item)
-// Deletes item from tree.
-// Post:  item is not in tree.
-{
-  if (item < tree->info)
-    Delete(tree->left, item); // Look in left subtree.
-  else if (item > tree->info)
-    Delete(tree->right, item); // Look in right subtree.
-  else
-    DeleteNode(tree); // Node found; call DeleteNode.
+inline void Delete(TreeNode *&tree, ItemType item){
+if (item < tree->info) {
+  Delete(tree->left, item); // Look in left subtree.
+} // if
+else if (item > tree->info) {
+  Delete(tree->right, item); // Look in right subtree.
+} // else if
+else {
+  DeleteNode(tree); // Node found; call DeleteNode.
+} // else
 }
 
 inline void GetPredecessor(TreeNode *tree, ItemType &data) {
-  while(tree->right != nullptr){
+  while(tree->right != NULL){
         tree = tree->right;
         data = tree->info;
   } // while 
 }
 
-inline void DeleteNode(TreeNode *&tree)
-// Deletes the node pointed to by tree.
-// Post: The user's data in the node pointed to by tree is no
-//       longer in the tree.  If tree is a leaf node or has only
-//       non-NULL child pointer the node pointed to by tree is
-//       deleted; otherwise, the user's data is replaced by its
-//       logical predecessor and the predecessor's node is deleted.
-{
+inline void DeleteNode(TreeNode *&tree) {
   ItemType data;
   TreeNode *tempPtr;
 
@@ -161,20 +148,12 @@ inline void DeleteNode(TreeNode *&tree)
   }
   else
   {
-    GetPredecessor(tree->left, data);
-    tree->info = data;
-    Delete(tree->left, data); // Delete predecessor node.
+    TreeNode* succ = ptrToSuccessor(tree->right);
+    tree->info = succ->info;
+    Delete(tree->left, succ->info); // Delete predecessor node.
   }
 }
-//Helper function for DeleteNode
-inline void GetPredecessor(TreeNode *tree, ItemType &data)
-// Sets data to the info member of the right-most node in tree.
-  {
-    while (tree->right != NULL) {
-      tree = tree->right;
-      data = tree->info;
-    } 
-  }
+
 // Helper function for Print
 inline void inOrderTraverse(TreeNode *tree)
 // Prints info member of items in tree in sorted order on screen.
@@ -210,8 +189,8 @@ inline void TreeType::PrintAncestors(int value)
   cout << "PrintAncestors() has been called\n";
 }
 
-TreeType* ptrToSuccessor(TreeNode*&tree) {
-  TreeType* ptr = tree->left;
+ TreeNode* ptrToSuccessor(TreeNode*&tree) {
+  TreeNode* ptr = tree->left;
   while (ptr->left != NULL) {
     ptr = tree->left;
   }
@@ -231,17 +210,6 @@ inline void mirror(TreeNode *&copy, const TreeNode *originalTree)
 inline void TreeType::mirrorImage(TreeType &t)
 {
   // calls the helper function mirror
-}
-
-inline void Destroy(TreeNode *&tree)
-// Post: tree is empty; nodes have been deallocated.
-{
-  if (tree != NULL)
-  {
-    Destroy(tree->left);
-    Destroy(tree->right);
-    delete tree;
-  }
 }
 
 inline void TreeType::MakeEmpty()
