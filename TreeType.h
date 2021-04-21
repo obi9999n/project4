@@ -30,5 +30,6 @@ public:
 
 private:
   TreeNode *root;
-};
+  TreeType* ptrToSuccessor(TreeNode*&tree);
+  };
 #endif

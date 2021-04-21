@@ -1,8 +1,7 @@
 #include <iostream>
 using namespace std;
 #include "TreeType.h"
-struct TreeNode
-{
+struct TreeNode {
   ItemType info;
   TreeNode *left;
   TreeNode *right;
@@ -148,7 +147,12 @@ inline void Delete(TreeNode *&tree, ItemType item)
     DeleteNode(tree); // Node found; call DeleteNode.
 }
 
-inline void GetPredecessor(TreeNode *tree, ItemType &data);
+inline void GetPredecessor(TreeNode *tree, ItemType &data) {
+  while(tree->right != nullptr){
+        tree = tree->right;
+        data = tree->info;
+  } // while 
+}
 
 inline void DeleteNode(TreeNode *&tree)
 // Deletes the node pointed to by tree.
@@ -182,11 +186,12 @@ inline void DeleteNode(TreeNode *&tree)
 //Helper function for DeleteNode
 inline void GetPredecessor(TreeNode *tree, ItemType &data)
 // Sets data to the info member of the right-most node in tree.
-{
-  while (tree->right != NULL)
-    tree = tree->right;
-  data = tree->info;
-}
+  {
+    while (tree->right != NULL) {
+      tree = tree->right;
+      data = tree->info;
+    } 
+  }
 // Helper function for Print
 inline void inOrderTraverse(TreeNode *tree)
 // Prints info member of items in tree in sorted order on screen.
@@ -221,12 +226,18 @@ inline void TreeType::PrintAncestors(int value)
   // Then Remove the following stub statement
   cout << "PrintAncestors() has been called\n";
 }
+
+TreeType* ptrToSuccessor(TreeNode*&tree) {
+  TreeType* ptr = tree->left;
+  while (ptr->left != NULL) {
+    ptr = tree->left;
+  }
+  return ptr;
+}
+
 inline int TreeType::GetSuccessor(int value)
 {
-  // Implement this function, You may call a helper function
-  // Then Remove the following stub statement
-  cout << "GetSuccessor() has been called\n";
-  return 0; //you should change this return statement
+  
 }
 // helper function for Mirror Image
 inline void mirror(TreeNode *&copy, const TreeNode *originalTree)
@@ -286,3 +297,6 @@ inline void TreeType::operator=(const TreeType &originalTree)
 inline void TreeType::LevelOrderPrint(TreeType *tree) const
 { //Implement this function, you May use a data structure
 }
+
+
+
