@@ -256,15 +256,19 @@ TreeType *ptrToSuccessor(TreeNode *&tree)
 inline int TreeType::GetSuccessor(int value)
 {
 }
-// helper function for Mirror Image
-inline void mirror(TreeNode *&copy, const TreeNode *originalTree)
-// Post: copy is the root of a tree that is a mirror Image of originalTree.
-{ // implement this function
-}
+// helper function for Mirror Image                                                                                                                 
+inline void mirror(TreeNode *&copy, const TreeNode *originalTree) {
+  copy = new TreeNode;
+  if (originalTree != NULL) {
+    Mirror(copy->left, originalTree->right);
+    Mirror(copy->right, originalTree->left);
+  } // if                                                                                                                                           
+ } // copy is the root of a tree that is a mirror Image of                                                                                          
 
 inline void TreeType::mirrorImage(TreeType &t)
 {
-  // calls the helper function mirror
+  Mirror(t.root, root);
+  return tree;
 }
 
 inline void Destroy(TreeNode *&tree)
