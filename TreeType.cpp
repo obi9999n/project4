@@ -9,80 +9,59 @@ struct TreeNode {
   TreeNode *left;
   TreeNode *right;
 };
+
 inline TreeType::TreeType() {
   root = NULL;
 }
 
-inline TreeType::TreeType(const TreeType &originalTree)
-{
+inline TreeType::TreeType(const TreeType &originalTree) {
+  CopyTree(root, originalTree.root);
+} // copy constructor
+
+inline void Destroy(TreeNode *&tree) {
+  if (tree != NULL) {
+    Destroy(tree->left);
+    Destroy(tree->right);
+    delete tree;
+  } // if
 }
 
-inline void Destroy(TreeNode *&tree);
-
-inline TreeType::~TreeType()
-// Calls recursive function Destroy to destroy the tree.
-{
+inline TreeType::~TreeType() {
   Destroy(root);
-}
+} // calls recursive function Destroy to destroy the tree
 
-inline bool TreeType::IsFull() const
-// Returns true if there is no room for another item
-//  on the free store; false otherwise.
-{
+// Returns true if there is no room for another item on the free store; false otherwise.
+inline bool TreeType::IsFull() const {
   TreeNode *location;
-  try
-  {
+  try {
     location = new TreeNode;
     delete location;
     return false;
-  }
-  catch (std::bad_alloc exception)
-  {
+  } catch (std::bad_alloc exception) {
     return true;
   }
-}
+} 
 
-inline bool TreeType::IsEmpty() const
 // Returns true if the tree is empty; false otherwise.
-{
+inline bool TreeType::IsEmpty() const {
   return root == NULL;
 }
 
-inline int CountNodes(TreeNode *tree);
-
-inline int TreeType::GetLength() const
-// Calls recursive function CountNodes to count the
-// nodes in the tree.
-{
+// Calls recursive function CountNodes to count the nodes in the tree.
+inline int TreeType::GetLength() const {
   return CountNodes(root);
 }
 
-inline int CountNodes(TreeNode *tree)
 // Post: returns the number of nodes in the tree.
-{
+inline int CountNodes(TreeNode *tree) {
   if (tree == NULL)
     return 0;
   else
     return CountNodes(tree->left) + CountNodes(tree->right) + 1;
 }
 
-inline void Retrieve(TreeNode *tree,
-                     ItemType &item, bool &found);
-
-inline ItemType TreeType::GetItem(ItemType item, bool &found)
-// Calls recursive function Retrieve to search the tree for item.
-{
-  Retrieve(root, item, found);
-  return item;
-}
-
 // helper function for GetItem
-inline void Retrieve(TreeNode *tree,
-                     ItemType &item, bool &found)
-// Recursively searches tree for item.
-// Post: If there is an element someItem whose key matches item's,
-//       found is true and item is set to a copy of someItem;
-//       otherwise found is false and item is unchanged.
+inline void Retrieve(TreeNode *tree, ItemType &item, bool &found)
 {
   if (tree == NULL)
     found = false; // item is not found.
@@ -97,31 +76,33 @@ inline void Retrieve(TreeNode *tree,
   }
 }
 
-inline void Insert(TreeNode *&tree, ItemType item);
-
-inline void TreeType::PutItem(ItemType item)
-// Calls recursive function Insert to insert item into tree.
-{
-  Insert(root, item);
+// Calls recursive function Retrieve to search the tree for item.
+inline ItemType TreeType::GetItem(ItemType item, bool &found) {
+  Retrieve(root, item, found);
+  return item;
 }
 
 // helper Function for PutItem
-inline void Insert(TreeNode *&tree, ItemType item)
-// Inserts item into tree.
-// Post:  item is in tree; search property is maintained.
-{
-  if (tree == NULL)
-  { // Insertion place found.
+inline void Insert(TreeNode *&tree, ItemType item) {
+  if (tree == NULL) { // Insertion place found.
     tree = new TreeNode;
     tree->right = NULL;
     tree->left = NULL;
     tree->info = item;
-  }
-  else if (item < tree->info)
+  } // if
+  else if (item < tree->info) {
     Insert(tree->left, item); // Insert in left subtree.
-  else
+  } // else if
+  else {
     Insert(tree->right, item); // Insert in right subtree.
+  } // else
+} // insert 
+
+// Calls recursive function Insert to insert item into tree.
+inline void TreeType::PutItem(ItemType item) {
+  Insert(root, item);
 }
+
 inline void DeleteNode(TreeNode *&tree);
 
 inline void Delete(TreeNode *&tree, ItemType item);
