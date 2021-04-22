@@ -253,7 +253,7 @@ void TreeType::PrintAncestors(int value)
   while (newVal != root->info)
   {
     TreeNode *temp = root;
-    while (temp->right->info != newVal && temp->left->info != newVal)
+    while (temp->right->info != newVal || temp->left->info != newVal)
     {
       if (temp->info < newVal)
       {
@@ -276,7 +276,30 @@ void TreeType::PrintAncestors(int value)
 
 int TreeType::GetSuccessor(int value)
 {
-  return;
+  TreeNode *temp = root;
+  while (temp->right->info != value || temp->left->info != value)
+  {
+    if (temp->left->info == value)
+    {
+      temp = temp->right;
+      break;
+    }
+    else if (temp->left->info == value)
+    {
+      temp = temp->left;
+      break;
+    }
+    else if (temp->info < value)
+    {
+      temp = temp->right;
+    }
+    else if (temp->info > value)
+    {
+      temp = temp->left;
+    }
+  }
+  TreeNode *done = ptrToSuccessor(temp);
+  return done->info;
 }
 
 // helper function for Mirror Image
