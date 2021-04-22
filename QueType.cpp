@@ -112,7 +112,7 @@ ItemType QueType<ItemType>::Dequeue()
 //       othersiwe a EmptyQueue exception has been thrown.
 {
   if (IsEmpty())
-    std::cout << "Queue is Empty\n";
+    throw FullQueue();
   else
   {
     NodeType<ItemType> *tempPtr;

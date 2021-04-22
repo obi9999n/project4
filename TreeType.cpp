@@ -370,7 +370,7 @@ void TreeType::LevelOrderPrint() const
   {
     // Print front of queue and remove it from queue
     TreeNode *node = q.Dequeue();
-    if (node != NULL)
+    if (node != nullptr)
     {
       cout << node->info << " ";
     }
@@ -385,10 +385,12 @@ void TreeType::LevelOrderPrint() const
       level++;
     }
     /* Enqueue left child */
+    if (node != nullptr)
+    {
+      q.Enqueue(node->left);
 
-    q.Enqueue(node->left);
-
-    /*Enqueue right child */
-    q.Enqueue(node->right);
+      /*Enqueue right child */
+      q.Enqueue(node->right);
+    }
   }
 }

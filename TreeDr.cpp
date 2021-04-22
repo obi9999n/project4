@@ -4,7 +4,7 @@
 #include <cctype>
 #include <cstring>
 #include "TreeType.cpp"
-#include "QueType.cpp"
+
 #include <iostream>
 using namespace std;
 
