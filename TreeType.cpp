@@ -1,5 +1,7 @@
 #include <iostream>
 #include "TreeType.h"
+#include "QueType.cpp"
+#include <string>
 
 using namespace std;
 
@@ -348,5 +350,45 @@ void TreeType::operator=(const TreeType &originalTree)
       return;      // Ignore assigning self to self
     Destroy(root); // Deallocate existing tree nodes
     CopyTree(root, originalTree.root);
+  }
+}
+
+void TreeType::LevelOrderPrint() const
+{
+  int count = 0;
+  int level = 0;
+  TreeNode *temp = root;
+  if (temp == NULL)
+    return;
+
+  // Create an empty queue for level order traversal
+  QueType<TreeNode *> q;
+  // Enqueue Root and initialize height
+  q.Enqueue(temp);
+
+  while (q.IsEmpty() == false)
+  {
+    // Print front of queue and remove it from queue
+    TreeNode *node = q.Dequeue();
+    if (node != NULL)
+    {
+      cout << node->info << " ";
+    }
+    else
+    {
+      cout << "-";
+    }
+    count++;
+    if (count == (2 ^ level))
+    {
+      cout << endl;
+      level++;
+    }
+    /* Enqueue left child */
+
+    q.Enqueue(node->left);
+
+    /*Enqueue right child */
+    q.Enqueue(node->right);
   }
 }

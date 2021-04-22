@@ -104,7 +104,7 @@ void QueType<ItemType>::Enqueue(ItemType newItem)
 }
 
 template <class ItemType>
-void QueType<ItemType>::Dequeue(ItemType &item)
+ItemType QueType<ItemType>::Dequeue()
 // Removes front item from the queue and returns it in item.
 // Pre:  Queue has been initialized and is not empty.
 // Post: If (queue is not empty) the front of the queue has been
@@ -118,11 +118,12 @@ void QueType<ItemType>::Dequeue(ItemType &item)
     NodeType<ItemType> *tempPtr;
 
     tempPtr = front;
-    item = front->info;
+    ItemType item = front->info;
     front = front->next;
     if (front == NULL)
       rear = NULL;
     delete tempPtr;
+    return item;
   }
 }
 template <class ItemType>

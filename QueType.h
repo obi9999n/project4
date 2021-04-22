@@ -42,7 +42,7 @@ public:
 
   int getLength() const;
 
-  void Dequeue(ItemType &item);
+  ItemType Dequeue();
   // Function: Removes front item from the queue and returns it in item.
   // Post: If (queue is empty) EmptyQueue exception is thrown
   //       and item is undefined
