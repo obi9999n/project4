@@ -131,7 +131,7 @@ void TreeType::DeleteItem(ItemType item)
     cout << item << "is not in tree\n";
 } // calls recursive function Delete to delete item from tree
 
-void Delete(TreeNode *&tree, ItemType item)
+void TreeType::Delete(TreeNode *&tree, ItemType item)
 {
   if (item < tree->info)
     Delete(tree->left, item); // Look in left subtree.
@@ -149,7 +149,7 @@ void GetPredecessor(TreeNode *tree, ItemType &data)
     data = tree->info;
   } // while
 }
-TreeNode *ptrToSuccessor(TreeNode *&tree)
+TreeNode *TreeType::ptrToSuccessor(TreeNode *&tree)
 {
   TreeNode *ptr = tree->left;
   while (ptr->left != NULL)
@@ -159,7 +159,7 @@ TreeNode *ptrToSuccessor(TreeNode *&tree)
   return ptr;
 }
 
-void DeleteNode(TreeNode *&tree)
+void TreeType::DeleteNode(TreeNode *&tree)
 // Deletes the node pointed to by tree.
 // Post: The user's data in the node pointed to by tree is no
 //       longer in the tree.  If tree is a leaf node or has only
@@ -211,37 +211,35 @@ void TreeType::Print() const
 {
   inOrderTraverse(root);
 }
-
+void PreOrderTraverse(TreeNode *node)
+{
+  TreeNode *temp = node;
+  if (temp != NULL)
+  {
+    cout << temp->info << " ";
+    PreOrderTraverse(temp->left);
+    PreOrderTraverse(temp->right);
+  }
+}
 void TreeType::PreOrderPrint() const
 {
   PreOrderTraverse(root);
 }
-void PreOrderTraverse(TreeNode *node)
+
+void PostOrderTraverse(TreeNode *node)
 {
   TreeNode *temp = node;
-  if (temp == NULL)
+  if (temp != NULL)
   {
-    return;
+    PostOrderTraverse(temp->left);
+    PostOrderTraverse(temp->right);
+    cout << temp->info << " ";
   }
-  cout << temp->info << " ";
-  PreOrderTraverse(temp->left);
-  PreOrderTraverse(temp->right);
 }
 
 void TreeType::PostOrderPrint() const
 {
   PostOrderTraverse(root);
-}
-void PostOrderTraverse(TreeNode *node)
-{
-  TreeNode *temp = node;
-  if (temp == NULL)
-  {
-    return;
-  }
-  PostOrderTraverse(temp->left);
-  PostOrderTraverse(temp->right);
-  cout << temp->info << " ";
 }
 
 void TreeType::PrintAncestors(int value)
@@ -274,13 +272,11 @@ void TreeType::PrintAncestors(int value)
     cout << temp->info << " ";
     newVal = temp->info;
   }
-  // Implement this function, You may call a helper function
-  // Then Remove the following stub statement
-  cout << "PrintAncestors() has been called\n";
 } // print ancestors
 
 int TreeType::GetSuccessor(int value)
 {
+  return;
 }
 
 // helper function for Mirror Image

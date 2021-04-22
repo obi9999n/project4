@@ -34,14 +34,12 @@ public:
 
 private:
   TreeNode *root;
-  TreeType *ptrToSuccessor(TreeNode *&tree);
+  TreeNode *ptrToSuccessor(TreeNode *&tree);
   void Destroy(TreeNode *&tree);
   void Retrieve(TreeNode *tree, ItemType &item, bool &found);
   void Insert(TreeNode *&tree, ItemType item);
   void GetPredecessor(TreeNode *tree, ItemType &data);
-  void inOrderTraverse(TreeNode *tree);
-  void PreOrderTraverse(TreeNode *node);
-  void PostOrderTraverse(TreeNode *node);
+
   void mirror(TreeNode *&copy, const TreeNode *originalTree);
 };
 #endif
