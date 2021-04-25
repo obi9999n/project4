@@ -153,7 +153,11 @@ void GetPredecessor(TreeNode *tree, ItemType &data)
 }
 TreeNode *TreeType::ptrToSuccessor(TreeNode *&tree)
 {
-  TreeNode *ptr = tree->left;
+  TreeNode *ptr = tree;
+  if (ptr->right != NULL)
+  {
+    ptr = ptr->right;
+  }
   while (ptr->left != NULL)
   {
     ptr = tree->left;
