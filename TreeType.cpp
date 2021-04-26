@@ -2,6 +2,7 @@
 #include "TreeType.h"
 #include "QueType.cpp"
 #include <string>
+#include <stack>
 
 using namespace std;
 
@@ -250,33 +251,37 @@ void TreeType::PostOrderPrint() const
 
 void TreeType::PrintAncestors(int value)
 {
-  int newVal = value;
+  bool found;
+  stack<ItemType> ancestors;
   if (value == root->info)
   {
     cout << value << " has no ancestors\n";
     return;
   }
-  while (newVal != root->info)
+  TreeNode *temp = root;
+  GetItem(value, found);
+  if (found == false)
   {
-    TreeNode *temp = root;
-    while (temp->right->info != newVal || temp->left->info != newVal)
+    cout << "Item is not in the tree";
+    return;
+  }
+  while (temp->right->info != value || temp->left->info != value)
+  {
+    if (temp->info < value)
     {
-      if (temp->info < newVal)
-      {
-        temp = temp->right;
-      }
-      else if (temp->info > newVal)
-      {
-        temp = temp->left;
-      }
-      if (temp->right == NULL && temp->left == NULL)
-      {
-        cout << "Item is not in the tree";
-        return;
-      }
+      ancestors.push(temp->info);
+      temp = temp->right;
     }
-    cout << temp->info << " ";
-    newVal = temp->info;
+    else if (temp->info > value)
+    {
+      ancestors.push(temp->info);
+      temp = temp->left;
+    }
+  }
+  while (!ancestors.empty())
+  {
+    cout << ancestors.top() << " ";
+    ancestors.pop();
   }
 } // print ancestors
 
