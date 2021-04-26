@@ -287,12 +287,12 @@ int TreeType::GetSuccessor(int value)
   {
     if (temp->left->info == value)
     {
-      temp = temp->right;
+      temp = temp->left;
       break;
     }
-    else if (temp->left->info == value)
+    else if (temp->right->info == value)
     {
-      temp = temp->left;
+      temp = temp->right;
       break;
     }
     else if (temp->info < value)
